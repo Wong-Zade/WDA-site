@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  onOpenInquiry: () => void;
+  onOpenInquiry?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
+export const Header: React.FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 24) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { label: 'Selected Works', href: '#works' },
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Studio Ethos', href: '#ethos' },
-    { label: 'Fit Check', href: '#fit-check' },
-    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Work', href: '#works' },
+    { label: 'Services', href: '#capabilities' },
+    { label: 'Packages', href: '#fit-check' },
+    { label: 'About', href: '#ethos' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -25,46 +41,77 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#121214]/90 backdrop-blur-md border-b border-[#27272a] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Zone 1: Wordmark */}
+    <header
+      className={`sticky top-0 z-40 w-full transition-all duration-300 ease-in-out ${
+        scrolled
+          ? 'bg-[#121214]/95 backdrop-blur-md border-b border-[#27272a]/80 py-2 shadow-lg shadow-black/20'
+          : 'bg-[#121214]/80 backdrop-blur-sm border-b border-[#27272a]/40 py-5'
+      }`}
+    >
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
+          scrolled ? 'h-11 sm:h-12' : 'h-14 sm:h-16'
+        }`}
+      >
+        {/* Logo: WONGS DIGITAL ARTS with faceted monogram icon as shown in XD */}
         <a
           href="#"
-          className="font-display text-lg sm:text-xl font-bold tracking-tight text-white hover:text-[#9169f6] transition-colors whitespace-nowrap group flex items-center gap-2"
+          className="group flex items-center gap-3 transition-transform duration-300"
+          aria-label="Wong's Digital Arts Home"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#9169f6] group-hover:scale-125 transition-transform shadow-[0_0_10px_rgba(145,105,246,0.9)]" />
-          <span>WONG'S DIGITAL ARTS</span>
+          {/* Stylized faceted geometric monogram emblem */}
+          <div
+            className={`flex items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:border-[#9169f6]/60 transition-all duration-300 ${
+              scrolled ? 'w-8 h-8 p-1.5' : 'w-9 h-9 sm:w-10 sm:h-10 p-2'
+            }`}
+          >
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full text-white group-hover:text-[#9169f6] transition-colors"
+            >
+              <path
+                d="M3 6L9 26L16 14L23 26L29 6H24L19 18.5L16 11L13 18.5L8 6H3Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+
+          <div className="flex flex-col leading-none">
+            <span
+              className={`font-display font-extrabold tracking-wider text-white transition-all duration-300 ${
+                scrolled ? 'text-sm sm:text-base' : 'text-base sm:text-lg'
+              }`}
+            >
+              WONGS
+            </span>
+            <span className="text-[8px] sm:text-[9px] font-caption tracking-[0.25em] text-neutral-400 uppercase mt-0.5 group-hover:text-neutral-300 transition-colors">
+              DIGITAL ARTS
+            </span>
+          </div>
         </a>
 
-        {/* Zone 2: Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium font-caption text-neutral-300">
+        {/* Navigation Links — clean, airy, no cluttered button in header */}
+        <nav className="hidden md:flex items-center gap-10 text-sm font-medium font-caption">
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => handleNavClick(link.href)}
-              className="text-neutral-300 hover:text-white transition-colors cursor-pointer py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#9169f6] hover:after:w-full after:transition-all"
+              className="text-neutral-300 hover:text-white transition-colors cursor-pointer py-1 relative tracking-wide after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#9169f6] hover:after:w-full after:transition-all duration-200"
             >
               {link.label}
             </button>
           ))}
         </nav>
 
-        {/* Zone 3: Primary Action & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onOpenInquiry}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold tracking-wide uppercase font-caption text-white bg-[#9169f6] hover:bg-[#7e52eb] active:scale-[0.98] transition-all rounded-lg shadow-[0_0_20px_rgba(76,47,135,0.6)] hover:shadow-[0_0_25px_rgba(145,105,246,0.7)] cursor-pointer whitespace-nowrap"
-          >
-            <span>Start a Project</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
-
-          {/* Mobile hamburger */}
+        {/* Mobile Hamburger toggle */}
+        <div className="flex items-center md:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-300 hover:text-white hover:bg-[#1f1f23] rounded-lg transition-colors cursor-pointer"
-            aria-label="Toggle menu"
+            className="p-2 text-neutral-300 hover:text-white hover:bg-[#1f1f23] rounded-lg transition-colors cursor-pointer"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -79,27 +126,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
               <button
                 key={link.label}
                 onClick={() => handleNavClick(link.href)}
-                className="text-left py-2 text-base font-medium text-neutral-200 hover:text-[#9169f6] transition-colors"
+                className="text-left py-2.5 text-base font-medium text-neutral-200 hover:text-[#9169f6] transition-colors cursor-pointer"
               >
                 {link.label}
               </button>
             ))}
           </nav>
-
-          <div className="pt-4 border-t border-[#27272a]">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenInquiry();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 text-xs font-semibold uppercase tracking-wider font-caption text-white bg-[#9169f6] hover:bg-[#7e52eb] rounded-lg transition-colors cursor-pointer shadow-[0_0_18px_rgba(145,105,246,0.5)]"
-            >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       )}
     </header>
   );
 };
+

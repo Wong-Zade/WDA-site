@@ -178,10 +178,10 @@ export const BrandFitCheck: React.FC<BrandFitCheckProps> = ({ onPrepopulateInqui
   };
 
   return (
-    <section id="fit-check" className="py-20 md:py-32 border-t border-[#27272a]/70 relative bg-[#141417]">
+    <section id="fit-check" className="py-24 md:py-36 border-t border-[#27272a]/50 relative bg-[#141417]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl space-y-3 pb-12">
+        <div className="max-w-3xl space-y-3 pb-14">
           <span className="text-xs font-caption uppercase tracking-widest text-[#9169f6]">
             Interactive Diagnostic · 60 Seconds
           </span>

@@ -1,32 +1,41 @@
 import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Sparkles } from 'lucide-react';
 import { HERO_ASSET } from '../data/studioData';
 
 interface HeroProps {
   onOpenInquiry: () => void;
   onExploreWorks: () => void;
+  onExploreServices?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks, onExploreServices }) => {
   const [imageError, setImageError] = useState(false);
 
+  const handleServicesClick = () => {
+    if (onExploreServices) {
+      onExploreServices();
+    } else {
+      const el = document.querySelector('#capabilities');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
-      {/* Subtle background ambient purple glow using #4c2f87 */}
+    <section className="relative pt-16 pb-24 md:pt-24 md:pb-36 lg:pt-28 lg:pb-40 overflow-hidden">
+      {/* Subtle ambient purple glow */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#4c2f87]/25 blur-[140px] pointer-events-none rounded-full"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#4c2f87]/20 blur-[150px] pointer-events-none rounded-full"
         aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Studio Kicker & Status */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-[#27272a]/60 text-xs font-caption text-neutral-400">
-          <div className="flex items-center gap-2">
-            <span className="font-mono-studio text-[#9169f6] font-medium">EST. 2024</span>
-            <span aria-hidden="true">·</span>
-            <span className="uppercase tracking-widest text-neutral-300">Independent Creative Direction</span>
-            <span aria-hidden="true">·</span>
-            <span>London & Worldwide</span>
+        {/* Top Studio Kicker & Status: 'EST. 2024' and 'independent direction' removed, location preserved */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-[#27272a]/40 text-xs font-caption text-neutral-400">
+          <div className="flex items-center gap-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#9169f6]" />
+            <span className="tracking-wide text-neutral-300 font-medium">London & Worldwide</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -40,60 +49,45 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
           </div>
         </div>
 
-        {/* Main Hero Split Grid */}
-        <div className="pt-12 md:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Studio Proposition */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="space-y-4">
-              <span className="inline-block text-xs font-caption font-semibold uppercase tracking-wider text-[#9169f6]">
-                A Solo Digital Art & Design Practice
-              </span>
-              <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] text-balance">
-                Better dressed brands. Clearer visual dialogue.
+        {/* Main Hero Split Grid with Generous White Space */}
+        <div className="pt-16 md:pt-20 lg:pt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Text layout and size strictly copied from Adobe XD mockup */}
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+            {/* Headline: Clean, compact, highly legible scale matching XD screen */}
+            <div className="space-y-2">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-[1.12]">
+                <span className="block">Brands, But</span>
+                <span className="block text-[#9169f6]">Better Dressed</span>
               </h1>
             </div>
 
-            <p className="text-lg sm:text-xl text-neutral-300 font-normal leading-relaxed max-w-2xl text-balance">
-              Wong’s Digital Arts outfits ambitious companies in custom-tailored visual identities, sculptural 3D objects, and razor-sharp digital flagships. No bloated agency tiers. Just direct, uncompromising aesthetic craft.
+            {/* Subtitle: Precise copy and comfortable readable size from XD mockup */}
+            <p className="text-sm sm:text-base text-neutral-300 font-normal leading-relaxed max-w-lg">
+              WONGS builds Brands that wants to look good, move better and work online.
             </p>
 
-            {/* Studio Key Attributes */}
-            <div className="pt-2 flex flex-wrap gap-y-3 gap-x-6 text-sm font-caption text-neutral-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#9169f6] shrink-0" />
-                <span>One Principal Designer</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#9169f6] shrink-0" />
-                <span>Zero Account Managers</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#9169f6] shrink-0" />
-                <span>Bespoke Typography & 3D</span>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            {/* CTAs: Clean rounded pill buttons matching XD design */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 font-caption">
+              {/* Primary 'Services' pill button from XD screen */}
               <button
-                onClick={onOpenInquiry}
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold tracking-wide uppercase font-caption text-white bg-[#9169f6] hover:bg-[#7e52eb] active:scale-[0.98] transition-all rounded-lg shadow-[0_0_25px_rgba(76,47,135,0.6)] hover:shadow-[0_0_35px_rgba(145,105,246,0.6)] cursor-pointer"
+                onClick={handleServicesClick}
+                className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold rounded-full bg-[#9169f6] hover:bg-[#7e52eb] active:scale-[0.98] text-white transition-all shadow-[0_0_20px_rgba(145,105,246,0.35)] hover:shadow-[0_0_30px_rgba(145,105,246,0.55)] cursor-pointer"
               >
-                <span>Initiate Project Consultation</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Services</span>
               </button>
 
+              {/* Secondary 'Work' button */}
               <button
                 onClick={onExploreWorks}
-                className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium font-caption text-neutral-300 hover:text-white bg-[#1a1a1e] hover:bg-[#232328] border border-[#2e2e34] rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full text-neutral-300 hover:text-white bg-[#1a1a1e] hover:bg-[#232328] border border-[#2e2e34] transition-all cursor-pointer"
               >
-                <span>Selected Works</span>
-                <ArrowDown className="w-4 h-4 text-neutral-400" />
+                <span>Selected Work</span>
+                <ArrowDown className="w-3.5 h-3.5 text-neutral-400" />
               </button>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Container */}
+          {/* Right Column: Hero Visual Container preserved with ample breathing room */}
           <div className="lg:col-span-5">
             <div className="relative group rounded-2xl p-2 bg-[#1a1a1e] border border-[#2a2a30] shadow-2xl transition-all duration-300 hover:border-[#9169f6]/40">
               <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-xl overflow-hidden bg-[#151518]">

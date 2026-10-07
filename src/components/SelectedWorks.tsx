@@ -24,32 +24,29 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
       : CASE_STUDIES.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="works" className="py-20 md:py-32 border-t border-[#27272a]/70 relative">
+    <section id="works" className="py-24 md:py-36 border-t border-[#27272a]/50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#27272a]/60">
-          <div className="space-y-3">
-            <div className="text-xs font-caption uppercase tracking-widest text-[#9169f6]">
-              Selected Works · Curated Monograph
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-white tracking-tight text-balance">
-              Dressed for distinction.
+        {/* Section Header: Aligned with XD artboard 'Selected Work / Some of recent Projects weve worked on.' */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#27272a]/40">
+          <div className="space-y-2">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+              Selected Work
             </h2>
-            <p className="text-neutral-400 text-sm sm:text-base max-w-xl">
-              Every project is an exercise in stripping away boilerplate aesthetics to build singular visual posture and crystallize communication.
+            <p className="text-neutral-400 text-sm sm:text-base font-normal">
+              Some of recent Projects weve worked on.
             </p>
           </div>
 
-          {/* Interactive Filter Tabs (Functional Buttons) */}
-          <div className="flex items-center gap-1.5 p-1.5 bg-[#18181c] border border-[#27272c] rounded-xl overflow-x-auto max-w-full font-caption">
-            <span className="text-neutral-500 pl-2 pr-1 hidden sm:inline-block">
+          {/* Interactive Filter Tabs */}
+          <div className="flex items-center gap-1.5 p-1.5 bg-[#18181c] border border-[#27272c] rounded-full overflow-x-auto max-w-full font-caption">
+            <span className="text-neutral-500 pl-3 pr-1 hidden sm:inline-block">
               <Filter className="w-3.5 h-3.5" />
             </span>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all whitespace-nowrap cursor-pointer ${
                   activeCategory === cat
                     ? 'bg-[#9169f6] text-white shadow-[0_0_14px_rgba(76,47,135,0.6)]'
                     : 'text-neutral-400 hover:text-white hover:bg-[#232328]'

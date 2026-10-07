@@ -1,6 +1,10 @@
 import { CaseStudy, Capability, Testimonial } from '../types';
+import heroAssetImg from '../assets/images/hero_studio_showcase_1791406046421.jpg';
+import auroraImg from '../assets/images/case_study_aurora_1791406059854.jpg';
+import chronosImg from '../assets/images/case_study_chronos_1791406070925.jpg';
+import atelierImg from '../assets/images/case_study_atelier_1791406080513.jpg';
 
-export const HERO_ASSET = '/src/assets/images/hero_studio_showcase_1791406046421.jpg';
+export const HERO_ASSET = heroAssetImg;
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
@@ -16,7 +20,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'The client was using generic minimalist luxury templates that rendered their collection indistinguishable from mass-market beauty brands.',
     solution:
       'We engineered a tactile identity rooted in dark chiseled volcanic basalt, high-contrast typography, and ultraviolet tactile foils. Every flacon and packaging unit now feels like an architectural relic.',
-    image: '/src/assets/images/case_study_aurora_1791406059854.jpg',
+    image: auroraImg,
     featured: true,
     aspect: '4:3',
     deliverables: [
@@ -47,7 +51,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Traditional watch photography flattened the intricate multi-axis tourbillon mechanics and failed to communicate the radical engineering to modern collectors.',
     solution:
       'Created custom 3D kinetic renders and spatial motion sequences paired with sharp Swiss typographic layouts that highlight every escapement gear and titanium chamfer.',
-    image: '/src/assets/images/case_study_chronos_1791406070925.jpg',
+    image: chronosImg,
     featured: true,
     aspect: '4:3',
     deliverables: [
@@ -78,7 +82,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'The textile house had disparate print collateral and an uninspired web catalog that felt distant from the sensory richness of their woven fabrics.',
     solution:
       'Designed a unified visual language with generous negative space, rigorous grid alignment, blind embossing guidelines, and an ultra-fast digital lookbook.',
-    image: '/src/assets/images/case_study_atelier_1791406080513.jpg',
+    image: atelierImg,
     featured: false,
     aspect: '4:3',
     deliverables: [
@@ -109,7 +113,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Audiophile hardware often falls into dated industrial cliches or overly sterile tech charts that obscure the emotional impact of music.',
     solution:
       'Constructed a generative waveform logomark and editorial layout system that visualizes audio frequencies through clean lines and ultraviolet accents.',
-    image: '/src/assets/images/hero_studio_showcase_1791406046421.jpg',
+    image: heroAssetImg,
     featured: false,
     aspect: '16:9',
     deliverables: [
