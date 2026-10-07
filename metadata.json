@@ -1,0 +1,8 @@
+{
+  "name": "Remix Wong\u0027s Digital Arts — Independent Design Studio",
+  "description": "One-man digital studio dressing brands better through precision design, visual identity, 3D craft, and crystal-clear visual communication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
