@@ -19,11 +19,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Top Studio Kicker & Status */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-caption text-neutral-400">
           <div className="flex items-center gap-2">
-            <span className="font-mono-studio text-[#9169f6] font-medium">EST. 2024</span>
-            <span aria-hidden="true">·</span>
-            <span className="uppercase tracking-widest text-neutral-300">Independent Creative Direction</span>
-            <span aria-hidden="true" className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">London & Worldwide</span>
+           
+            <span className="hidden sm:inline">Lilongwe & Worldwide</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -40,9 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Main Hero Content */}
         <div className="pt-6 sm:pt-8 max-w-3xl space-y-5">
           <div className="space-y-2">
-            <span className="inline-block text-[11px] sm:text-xs font-caption font-semibold uppercase tracking-wider text-[#9169f6]">
-              A Solo Digital Art & Design Practice
-            </span>
+          
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
               Better dressed brands. Clearer visual dialogue.
             </h1>
@@ -55,16 +50,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
           {/* Studio Key Attributes */}
           <div className="pt-1 flex flex-wrap gap-y-1.5 gap-x-4 text-xs sm:text-sm font-caption text-neutral-400">
             <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-              <span>One Principal Designer</span>
+            
             </div>
             <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-              <span>Zero Account Managers</span>
+             
             </div>
             <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-              <span>Bespoke Typography & 3D</span>
+          
             </div>
           </div>
 
