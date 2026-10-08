@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
 interface HeroProps {
   onOpenInquiry: () => void;
@@ -19,8 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Top Studio Kicker & Status */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-caption text-neutral-400">
           <div className="flex items-center gap-2">
-           
-            <span className="hidden sm:inline">Lilongwe & Worldwide</span>
+            <span>Lilongwe & Worldwide</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -37,7 +36,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Main Hero Content */}
         <div className="pt-6 sm:pt-8 max-w-3xl space-y-5">
           <div className="space-y-2">
-          
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
               Brands, But Better Dressed
             </h1>
@@ -45,18 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
 
           <p className="text-sm sm:text-base lg:text-lg text-neutral-300 font-normal leading-relaxed text-balance">
             WONGS Builds Brands that look good, Move better and work everywhere
-          {/* Studio Key Attributes */}
-          <div className="pt-1 flex flex-wrap gap-y-1.5 gap-x-4 text-xs sm:text-sm font-caption text-neutral-400">
-            <div className="flex items-center gap-1.5">
-            
-            </div>
-            <div className="flex items-center gap-1.5">
-             
-            </div>
-            <div className="flex items-center gap-1.5">
-          
-            </div>
-          </div>
+          </p>
 
           {/* CTAs */}
           <div className="pt-3 flex flex-wrap items-center gap-3">
