@@ -93,46 +93,4 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
             <div className="relative group rounded-2xl p-2 bg-[#1a1a1e] border border-[#2a2a30] shadow-2xl transition-all duration-300 hover:border-[#9169f6]/40 max-w-md lg:max-w-none mx-auto w-full">
               <div className="relative w-full aspect-[16/10] lg:aspect-[4/3] max-h-[220px] sm:max-h-[260px] lg:max-h-[300px] xl:max-h-[340px] rounded-xl overflow-hidden bg-[#151518]">
                 {!imageError ? (
-                  <img
-                    src={HERO_ASSET}
-                    alt="Wong's Digital Arts — Studio Sculptural Identity Showcase"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    referrerPolicy="no-referrer"
-                    onError={() => setImageError(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a1a24] to-[#121214] p-6 text-center">
-                    <Sparkles className="w-8 h-8 text-[#9169f6] mb-2" />
-                    <p className="font-display font-semibold text-white text-sm">Wong's Digital Arts</p>
-                    <p className="text-xs font-caption text-neutral-400 mt-1">Sculptural Identity & Tactile Direction</p>
-                  </div>
-                )}
-
-                {/* Subtle scrim overlay with project caption */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                  <div className="flex items-center justify-between text-xs text-neutral-300 font-caption">
-                    <div>
-                      <p className="font-semibold text-white font-display text-xs sm:text-sm tracking-wide">
-                        Bespoke Brand Architecture
-                      </p>
-                      <p className="text-[11px] sm:text-xs text-neutral-400">Tactile Chromatic Study · 2026</p>
-                    </div>
-                    <span className="px-2 py-0.5 rounded bg-[#4c2f87]/80 border border-[#9169f6]/40 text-[10px] sm:text-[11px] font-mono-studio text-[#9169f6]">
-                      STUDIO REEL
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom detail bar */}
-              <div className="mt-1.5 px-3 py-1.5 flex items-center justify-between text-[11px] sm:text-xs text-neutral-400 font-caption">
-                <span className="font-mono-studio">PROJECT FILE // WDA-2026-HERO</span>
-                <span className="text-[#9169f6] font-medium">HIGH-CRAFT VISUAL IDENTITY</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+             
