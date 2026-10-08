@@ -47,13 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
 
           {/* CTAs */}
           <div className="pt-3 flex flex-wrap items-center gap-3">
-            <button
-              onClick={onOpenInquiry}
-              className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide uppercase font-caption text-white bg-gradient-to-r from-[#9169f6] to-[#7042e0] hover:from-[#a07df8] hover:to-[#7f51ec] active:scale-[0.98] transition-all rounded-full shadow-[0_0_20px_rgba(145,105,246,0.5)] hover:shadow-[0_0_30px_rgba(145,105,246,0.7)] cursor-pointer group"
-            >
-              <span>Initiate Project Consultation</span>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
+        
 
             <button
               onClick={onExploreWorks}
