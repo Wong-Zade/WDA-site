@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Sparkles, CheckCircle2 } from 'lucide-react';
-import { HERO_ASSET } from '../data/studioData';
+import React from 'react';
+import { ArrowDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onOpenInquiry: () => void;
@@ -8,8 +7,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => {
-  const [imageError, setImageError] = useState(false);
-
   return (
     <section className="relative min-h-[100svh] lg:h-[100svh] flex flex-col justify-center items-center overflow-hidden pt-20 pb-4 sm:pt-20 sm:pb-6">
       {/* Subtle background ambient purple glow */}
@@ -22,8 +19,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Top Studio Kicker & Status */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-caption text-neutral-400">
           <div className="flex items-center gap-2">
-          
-          <span className="hidden sm:inline">London & Worldwide</span>
+            <span className="font-mono-studio text-[#9169f6] font-medium">EST. 2024</span>
+            <span aria-hidden="true">·</span>
+            <span className="uppercase tracking-widest text-neutral-300">Independent Creative Direction</span>
+            <span aria-hidden="true" className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline">London & Worldwide</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -37,60 +37,57 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
           </div>
         </div>
 
-        {/* Main Hero Split Grid - Vertically Centered */}
-        <div className="pt-3 sm:pt-5 lg:pt-6 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
-          {/* Left Column: Studio Proposition */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
-            <div className="space-y-2">
-             
-              <h1 className="font-display text-2xl sm:text-4xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
-                Better dressed brands. Clearer visual dialogue.
-              </h1>
+        {/* Main Hero Content */}
+        <div className="pt-6 sm:pt-8 max-w-3xl space-y-5">
+          <div className="space-y-2">
+            <span className="inline-block text-[11px] sm:text-xs font-caption font-semibold uppercase tracking-wider text-[#9169f6]">
+              A Solo Digital Art & Design Practice
+            </span>
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
+              Better dressed brands. Clearer visual dialogue.
+            </h1>
+          </div>
+
+          <p className="text-sm sm:text-base lg:text-lg text-neutral-300 font-normal leading-relaxed text-balance">
+            Wong’s Digital Arts outfits ambitious companies in custom-tailored visual identities, sculptural 3D objects, and razor-sharp digital flagships. No bloated agency tiers. Just direct, uncompromising aesthetic craft.
+          </p>
+
+          {/* Studio Key Attributes */}
+          <div className="pt-1 flex flex-wrap gap-y-1.5 gap-x-4 text-xs sm:text-sm font-caption text-neutral-400">
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
+              <span>One Principal Designer</span>
             </div>
-
-            <p className="text-xs sm:text-sm lg:text-base text-neutral-300 font-normal leading-relaxed max-w-xl text-balance">
-              Wong’s Digital Arts outfits ambitious companies in custom-tailored visual identities, sculptural 3D objects, and razor-sharp digital flagships. No bloated agency tiers. Just direct, uncompromising aesthetic craft.
-            </p>
-
-            {/* Studio Key Attributes */}
-            <div className="pt-0.5 sm:pt-1 flex flex-wrap gap-y-1.5 gap-x-4 text-xs sm:text-sm font-caption text-neutral-400">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-                <span>One Principal Designer</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-                <span>Zero Account Managers</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
-                <span>Bespoke Typography & 3D</span>
-              </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
+              <span>Zero Account Managers</span>
             </div>
-
-            {/* CTAs */}
-            <div className="pt-2 sm:pt-3 flex flex-wrap items-center gap-3">
-              <button
-                onClick={onOpenInquiry}
-                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold tracking-wide uppercase font-caption text-white bg-gradient-to-r from-[#9169f6] to-[#7042e0] hover:from-[#a07df8] hover:to-[#7f51ec] active:scale-[0.98] transition-all rounded-full shadow-[0_0_20px_rgba(145,105,246,0.5)] hover:shadow-[0_0_30px_rgba(145,105,246,0.7)] cursor-pointer group"
-              >
-                <span>Initiate Project Consultation</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </button>
-
-              <button
-                onClick={onExploreWorks}
-                className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-medium font-caption text-neutral-300 hover:text-white bg-[#1a1a1e] hover:bg-[#232328] border border-[#2e2e34] rounded-full transition-colors cursor-pointer"
-              >
-                <span>Selected Works</span>
-                <ArrowDown className="w-3.5 h-3.5 text-neutral-400" />
-              </button>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#9169f6] shrink-0" />
+              <span>Bespoke Typography & 3D</span>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Container */}
-          <div className="lg:col-span-5">
-            <div className="relative group rounded-2xl p-2 bg-[#1a1a1e] border border-[#2a2a30] shadow-2xl transition-all duration-300 hover:border-[#9169f6]/40 max-w-md lg:max-w-none mx-auto w-full">
-              <div className="relative w-full aspect-[16/10] lg:aspect-[4/3] max-h-[220px] sm:max-h-[260px] lg:max-h-[300px] xl:max-h-[340px] rounded-xl overflow-hidden bg-[#151518]">
-                {!imageError ? (
-             
+          {/* CTAs */}
+          <div className="pt-3 flex flex-wrap items-center gap-3">
+            <button
+              onClick={onOpenInquiry}
+              className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide uppercase font-caption text-white bg-gradient-to-r from-[#9169f6] to-[#7042e0] hover:from-[#a07df8] hover:to-[#7f51ec] active:scale-[0.98] transition-all rounded-full shadow-[0_0_20px_rgba(145,105,246,0.5)] hover:shadow-[0_0_30px_rgba(145,105,246,0.7)] cursor-pointer group"
+            >
+              <span>Initiate Project Consultation</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={onExploreWorks}
+              className="inline-flex items-center gap-2 px-5 py-3 text-xs sm:text-sm font-medium font-caption text-neutral-300 hover:text-white bg-[#1a1a1e] hover:bg-[#232328] border border-[#2e2e34] rounded-full transition-colors cursor-pointer"
+            >
+              <span>Selected Works</span>
+              <ArrowDown className="w-3.5 h-3.5 text-neutral-400" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
