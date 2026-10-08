@@ -19,11 +19,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
   }, []);
 
   const navLinks = [
-    { label: 'Selected Works', href: '#works' },
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Studio Ethos', href: '#ethos' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Fit Check', href: '#fit-check' },
+    { label: 'View Work', href: '#works' },
+    { label: 'Services', href: '#capabilities' },
+    { label: 'About', href: '#ethos' },
+    { label: 'Reviews', href: '#testimonials' },
+    { label: 'Brand-Audit', href: '#fit-check' },
   ];
 
   const handleNavClick = (href: string) => {
