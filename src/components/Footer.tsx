@@ -64,10 +64,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-8 border-t border-[#222226] font-caption">
           {/* Brand info */}
           <div className="md:col-span-5 space-y-4">
-            <div className="font-display text-lg font-bold text-white tracking-tight flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#9169f6] shadow-[0_0_8px_rgba(145,105,246,0.8)]" />
-              <span>WONG'S DIGITAL ARTS</span>
-            </div>
+          <img 
+  src="./logo.png" 
+  alt="Brand Logo" 
+  className="h-7 w-auto object-contain mb-2"
+/>
             <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed max-w-sm font-body">
               An independent, one-man design and digital art studio. Specializing in bespoke brand identity systems, sculptural 3D objects, and frictionless visual communication.
             </p>
