@@ -39,14 +39,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
           <div className="space-y-2">
           
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
-              Better dressed brands. Clearer visual dialogue.
+              Brands, But Better Dressed
             </h1>
           </div>
 
           <p className="text-sm sm:text-base lg:text-lg text-neutral-300 font-normal leading-relaxed text-balance">
-            Wong’s Digital Arts outfits ambitious companies in custom-tailored visual identities, sculptural 3D objects, and razor-sharp digital flagships. No bloated agency tiers. Just direct, uncompromising aesthetic craft.
-          </p>
-
+            WONGS Builds Brands that look good, Move better and work everywhere
           {/* Studio Key Attributes */}
           <div className="pt-1 flex flex-wrap gap-y-1.5 gap-x-4 text-xs sm:text-sm font-caption text-neutral-400">
             <div className="flex items-center gap-1.5">
