@@ -9,7 +9,6 @@ import { ClientProof } from './components/ClientProof';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { InquiryModal } from './components/InquiryModal';
-import { FloatingStartButton } from './components/FloatingStartButton';
 import { CaseStudy } from './types';
 
 export default function App() {
@@ -26,13 +25,6 @@ export default function App() {
 
   const handleExploreWorks = () => {
     const el = document.querySelector('#works');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleExploreServices = () => {
-    const el = document.querySelector('#capabilities');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -58,7 +50,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#121214] text-neutral-100 flex flex-col font-sans selection:bg-purple-600 selection:text-white">
-      {/* Top Bar with dynamic shrink-on-scroll */}
+      {/* Top Bar */}
       <Header onOpenInquiry={handleOpenInquiry} />
 
       {/* Main Studio Surfaces */}
@@ -67,14 +59,10 @@ export default function App() {
         <Hero
           onOpenInquiry={handleOpenInquiry}
           onExploreWorks={handleExploreWorks}
-          onExploreServices={handleExploreServices}
         />
 
         {/* Selected Works Bento Monograph */}
         <SelectedWorks onSelectProject={(project) => setSelectedProject(project)} />
-
-        {/* Interactive Studio Brand Fit Check */}
-        <BrandFitCheck onPrepopulateInquiry={handlePrepopulateFromDiagnostic} />
 
         {/* Capabilities & Disciplines */}
         <Capabilities onSelectService={handleSelectService} />
@@ -82,15 +70,15 @@ export default function App() {
         {/* Solo Studio Ethos & Operational Contrast */}
         <SoloStudioEthos onOpenInquiry={handleOpenInquiry} />
 
-        {/* Quantitative Client Proof */}
+        {/* Quantitative Client Proof & Testimonials */}
         <ClientProof />
+
+        {/* Interactive Studio Brand Fit Check */}
+        <BrandFitCheck onPrepopulateInquiry={handlePrepopulateFromDiagnostic} />
       </main>
 
       {/* Studio Footer */}
       <Footer onOpenInquiry={handleOpenInquiry} />
-
-      {/* Floating Action Button for 'Start a Project' */}
-      <FloatingStartButton onOpenInquiry={handleOpenInquiry} />
 
       {/* Case Study Deep Dive Modal */}
       <ProjectModal

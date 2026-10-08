@@ -99,13 +99,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
                 </a>
               </li>
               <li>
-                <a href="#fit-check" className="hover:text-[#9169f6] transition-colors">
-                  Brand Wardrobe Diagnostic
+                <a href="#testimonials" className="hover:text-[#9169f6] transition-colors">
+                  Client Endorsements
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="hover:text-[#9169f6] transition-colors">
-                  Client Endorsements
+                <a href="#fit-check" className="hover:text-[#9169f6] transition-colors">
+                  Brand Wardrobe Diagnostic
                 </a>
               </li>
             </ul>
