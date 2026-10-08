@@ -22,11 +22,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
         {/* Top Studio Kicker & Status */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-caption text-neutral-400">
           <div className="flex items-center gap-2">
-            <span className="font-mono-studio text-[#9169f6] font-medium">EST. 2024</span>
-            <span aria-hidden="true">·</span>
-            <span className="uppercase tracking-widest text-neutral-300">Independent Creative Direction</span>
-            <span aria-hidden="true" className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">London & Worldwide</span>
+          
+          <span className="hidden sm:inline">London & Worldwide</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -45,9 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
           {/* Left Column: Studio Proposition */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5">
             <div className="space-y-2">
-              <span className="inline-block text-[11px] sm:text-xs font-caption font-semibold uppercase tracking-wider text-[#9169f6]">
-                A Solo Digital Art & Design Practice
-              </span>
+             
               <h1 className="font-display text-2xl sm:text-4xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
                 Better dressed brands. Clearer visual dialogue.
               </h1>
