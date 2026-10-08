@@ -50,15 +50,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
             : 'w-full max-w-7xl h-20 px-4 sm:px-6 lg:px-8 bg-[#121214]/90 backdrop-blur-md border-b border-[#27272a]/70 rounded-none shadow-none'
         }`}
       >
-        {/* Zone 1: Wordmark */}
-        <a
-          href="#"
-          className="font-display text-sm sm:text-base lg:text-lg font-bold tracking-tight text-white hover:text-[#9169f6] transition-colors whitespace-nowrap group flex items-center gap-2"
-        >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#9169f6] group-hover:scale-125 transition-transform shadow-[0_0_10px_rgba(145,105,246,0.9)]" />
-          <span className="hidden sm:inline">WONG'S DIGITAL ARTS</span>
-          <span className="sm:hidden font-extrabold tracking-wider">WONG'S</span>
-        </a>
+     {/* Zone 1: Wordmark / Logo */}
+<a href="#" className="flex items-center gap-2 group">
+  <img 
+    src="./logo.png" 
+    alt="Brand Logo" 
+    className="h-8 sm:h-9 w-auto object-contain"
+  />
+</a>
 
         {/* Zone 2: Navigation Links */}
         <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-medium font-caption text-neutral-300">
