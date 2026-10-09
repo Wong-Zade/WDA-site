@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 interface HeroProps {
   onOpenInquiry: () => void;

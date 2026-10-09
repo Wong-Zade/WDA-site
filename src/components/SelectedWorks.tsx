@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Sparkles, Filter } from 'lucide-react';
+import { ArrowUpRight, Filter } from 'lucide-react';
 import { CASE_STUDIES } from '../data/studioData';
 import { CaseStudy } from '../types';
 
@@ -47,11 +47,6 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
         {/* Overlay info */}
         <div className="absolute top-2.5 left-2.5 px-2.5 py-1 bg-[#121214]/85 backdrop-blur-sm border border-[#292930] rounded-md text-[11px] font-caption text-neutral-300">
           {project.category}
-        </div>
-
-        <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 bg-[#4c2f87]/80 backdrop-blur-sm border border-[#9169f6]/40 rounded-md text-[11px] font-mono-studio text-[#9169f6] flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-          <Sparkles className="w-3 h-3 text-[#9169f6]" />
-          <span>{project.outcomeMetric}</span>
         </div>
       </div>
 
@@ -109,7 +104,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
                 Selected Work
               </h2>
               <p className="text-neutral-400 text-xs sm:text-sm font-normal">
-                Some of recent Projects weve worked on.
+                Some of the recent Projects we've worked on.
               </p>
             </div>
 
@@ -145,21 +140,6 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
       {secondPair.length > 0 && (
         <section className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/40 relative overflow-hidden bg-[#131316]/40">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center sm:pl-6 lg:pl-12">
-            {/* Continuation Kicker Header */}
-            <div className="pb-3 border-b border-[#27272a]/40 flex items-center justify-between">
-              <div>
-                <span className="text-[11px] font-caption uppercase tracking-widest text-[#9169f6] font-semibold">
-                  Archival Collection · Section 02
-                </span>
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  Further Selected Commissions
-                </h3>
-              </div>
-              <span className="font-mono-studio text-xs text-neutral-400">
-                03 — 04 of 04
-              </span>
-            </div>
-
             {/* Next 2 Square Boxes Grid - Screen Page 2 */}
             <div className="pt-4 sm:pt-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               {secondPair.map((project) => renderProjectCard(project))}
