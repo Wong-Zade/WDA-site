@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUp, Copy, Check, Globe } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 interface FooterProps {
   onOpenInquiry: () => void;
@@ -20,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
 
   return (
     <footer id="contact" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center border-t border-[#27272a] bg-[#101012] text-neutral-400 py-12 sm:py-16 lg:py-6 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-between space-y-5 sm:space-y-7 sm:pl-6 lg:pl-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-between space-y-5 sm:space-y-7">
         {/* Big Studio CTA Strip */}
         <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#18181c] to-[#131316] border border-[#2c2c34] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 sm:gap-6 relative overflow-hidden">
           {/* Subtle purple radial glow */}
@@ -65,9 +66,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
           {/* Brand info */}
           <div className="md:col-span-5 space-y-2.5">
             <img 
-              src="./logo.png" 
-              alt="Brand Logo" 
+              src={logoImg} 
+              alt="WONG'S Digital Arts" 
               className="h-7 w-auto object-contain"
+              onError={(e) => {
+                if (e.currentTarget.src !== '/logo.png') {
+                  e.currentTarget.src = '/logo.png';
+                }
+              }}
             />
             <p className="text-xs text-neutral-400 leading-relaxed max-w-sm font-body">
               An independent, one-man design and digital art studio. Specializing in bespoke brand identity systems, sculptural 3D objects, and frictionless visual communication.

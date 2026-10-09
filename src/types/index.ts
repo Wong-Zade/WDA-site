@@ -32,6 +32,7 @@ export interface Testimonial {
   role: string;
   company: string;
   impactMetric: string;
+  avatar?: string;
 }
 
 export interface DiagnosticResult {

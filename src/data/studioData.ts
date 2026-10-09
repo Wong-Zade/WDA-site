@@ -3,6 +3,10 @@ import heroAssetImg from '../assets/images/hero_studio_showcase_1791406046421.jp
 import auroraImg from '../assets/images/case_study_aurora_1791406059854.jpg';
 import chronosImg from '../assets/images/case_study_chronos_1791406070925.jpg';
 import atelierImg from '../assets/images/case_study_atelier_1791406080513.jpg';
+import avatarStefan from '../assets/images/avatar_stefan_1791527085889.jpg';
+import avatarClaire from '../assets/images/avatar_claire_1791527100398.jpg';
+import avatarMarc from '../assets/images/avatar_marc_1791527116509.jpg';
+import avatarElena from '../assets/images/avatar_elena_1791527133374.jpg';
 
 export const HERO_ASSET = heroAssetImg;
 
@@ -225,6 +229,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Founder & CEO',
     company: 'Vivid Acoustics Berlin',
     impactMetric: '+210% Pre-Orders',
+    avatar: avatarStefan,
   },
   {
     quote:
@@ -233,6 +238,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Creative Director',
     company: 'Maison Aurora',
     impactMetric: '100% Retail Sellout',
+    avatar: avatarClaire,
   },
   {
     quote:
@@ -241,6 +247,16 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Managing Partner',
     company: 'Chronos Manufacture',
     impactMetric: 'Sold Out in 48h',
+    avatar: avatarMarc,
+  },
+  {
+    quote:
+      'Wong completely transformed our brand posture before our Series A. Institutional investors specifically complimented our bespoke typography and commanding digital presence during demo days.',
+    author: 'Elena Lindqvist',
+    role: 'Co-Founder & VP Product',
+    company: 'Aether Spatial Studio',
+    impactMetric: '$14M Series A Closed',
+    avatar: avatarElena,
   },
 ];
 
