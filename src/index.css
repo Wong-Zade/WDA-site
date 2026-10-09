@@ -2,8 +2,8 @@
 
 @layer base {
   :root {
-    --font-display: 'Lexend', sans-serif;
-    --font-caption: 'Sora', sans-serif;
+    --font-display: 'Outfit', sans-serif;
+    --font-caption: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
@@ -14,6 +14,11 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
+    font-size: 95%;
+  }
+
+  p {
+    font-family: var(--font-body);
   }
 }
 
@@ -23,6 +28,26 @@
 
 .font-caption {
   font-family: var(--font-caption);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-jakarta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-lexend {
+  font-family: 'Lexend', sans-serif;
+}
+
+.font-sora {
+  font-family: 'Sora', sans-serif;
 }
 
 .font-mono-studio {

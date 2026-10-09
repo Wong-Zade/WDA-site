@@ -5,7 +5,7 @@ import { TESTIMONIALS } from '../data/studioData';
 export const ClientProof: React.FC = () => {
   return (
     <section id="testimonials" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center sm:pl-6 lg:pl-12">
         {/* Section Header */}
         <div className="max-w-3xl space-y-1.5 pb-4 sm:pb-6">
           <span className="text-[11px] sm:text-xs font-caption uppercase tracking-widest text-[#9169f6]">
