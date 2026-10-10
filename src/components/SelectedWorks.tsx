@@ -94,9 +94,8 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
 
   return (
     <>
-      {/* Screen Page 1: Top 2 Square Projects fully visible on a single screen */}
-      <section id="works" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/50 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
+      <section id="works" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-[#27272a]/40">
             <div className="space-y-1">
@@ -129,38 +128,25 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ onSelectProject })
             </div>
           </div>
 
-          {/* 2 Square Boxes Grid - Screen Page 1 */}
-          <div className="pt-4 sm:pt-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-            {firstPair.map((project) => renderProjectCard(project))}
+          {/* Project grid: all projects together */}
+          <div className="pt-6 sm:pt-8 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            {[...firstPair, ...secondPair].map((project) => renderProjectCard(project))}
+          </div>
+
+          {/* Studio Note on Curation */}
+          <div className="mt-6 sm:mt-8 p-3 sm:p-4 rounded-xl bg-[#17171a] border border-[#27272c] flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 text-xs font-caption text-neutral-400">
+            <button
+              onClick={() => {
+                const el = document.querySelector('#contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-[#9169f6] hover:text-purple-300 font-medium underline underline-offset-4 cursor-pointer whitespace-nowrap text-[11px] sm:text-xs"
+            >
+              Request Private Monograph Deck →
+            </button>
           </div>
         </div>
       </section>
-
-      {/* Screen Page 2: Stacked below with the remaining 2 Square Projects fully visible on another screen */}
-      {secondPair.length > 0 && (
-        <section className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/40 relative overflow-hidden bg-[#131316]/40">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
-            {/* Next 2 Square Boxes Grid - Screen Page 2 */}
-            <div className="pt-4 sm:pt-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-              {secondPair.map((project) => renderProjectCard(project))}
-            </div>
-
-            {/* Studio Note on Curation */}
-            <div className="mt-4 sm:mt-5 p-3 sm:p-4 rounded-xl bg-[#17171a] border border-[#27272c] flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 text-xs font-caption text-neutral-400">
-              
-              <button
-                onClick={() => {
-                  const el = document.querySelector('#contact');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-[#9169f6] hover:text-purple-300 font-medium underline underline-offset-4 cursor-pointer whitespace-nowrap text-[11px] sm:text-xs"
-              >
-                Request Private Monograph Deck →
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 };

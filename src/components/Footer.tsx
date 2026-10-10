@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
   };
 
   return (
-    <footer id="contact" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center border-t border-[#27272a] bg-[#101012] text-neutral-400 py-12 sm:py-16 lg:py-6 overflow-hidden">
+    <footer id="contact" className="border-t border-[#27272a] bg-[#101012] text-neutral-400 py-16 sm:py-20 lg:py-24 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-between space-y-5 sm:space-y-7">
         {/* Big Studio CTA Strip */}
         <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#18181c] to-[#131316] border border-[#2c2c34] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 sm:gap-6 relative overflow-hidden">

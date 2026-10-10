@@ -50,7 +50,7 @@ export const ClientProof: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/50 relative overflow-hidden">
+    <section id="testimonials" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative overflow-hidden">
       {/* Balanced container: perfectly aligned from left to right */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
         {/* Section Header with Carousel Navigation Controls */}

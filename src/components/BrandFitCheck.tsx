@@ -184,7 +184,7 @@ export const BrandFitCheck: React.FC<BrandFitCheckProps> = ({ onPrepopulateInqui
   const currentQ = QUESTIONS[activeQuestionIdx];
 
   return (
-    <section id="fit-check" className="min-h-[100svh] lg:h-[100svh] flex flex-col justify-center py-16 sm:py-20 lg:py-6 border-t border-[#27272a]/50 relative bg-[#141417] overflow-hidden">
+    <section id="fit-check" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative bg-[#141417] overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
         {/* Header */}
         <div className="max-w-3xl space-y-1 pb-3 sm:pb-4">
