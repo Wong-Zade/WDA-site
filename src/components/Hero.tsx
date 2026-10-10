@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
       />
 
       {/* Centered optical column, balanced from left to right */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center relative z-10">
         {/* Top Studio Kicker & Status with Sora caption font */}
         <div className="flex items-center pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-sora text-neutral-400">
           <div className="flex items-center gap-2">

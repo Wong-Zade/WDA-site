@@ -11,7 +11,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({ onSelectService }) =
 
   return (
     <section id="capabilities" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
         {/* Section Header */}
         <div className="max-w-3xl space-y-1.5 pb-4 sm:pb-6">
           <span className="text-[11px] sm:text-xs font-caption uppercase tracking-widest text-[#9169f6]">

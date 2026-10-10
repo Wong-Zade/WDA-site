@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
         className={`pointer-events-auto transition-all duration-500 ease-out flex items-center justify-between ${
           isScrolled
             ? 'w-full max-w-2xl lg:max-w-3xl h-11 sm:h-12 px-3.5 sm:px-5 bg-[#161619]/90 backdrop-blur-xl border border-[#2e2e38]/80 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.6),0_0_1px_rgba(255,255,255,0.12)]'
-            : 'w-full max-w-5xl h-15 sm:h-16 px-4 sm:px-6 lg:px-8 bg-[#121214]/90 backdrop-blur-md border-b border-[#27272a]/70 rounded-none shadow-none'
+            : 'w-full max-w-7xl h-15 sm:h-16 px-4 sm:px-6 lg:px-8 bg-[#121214]/90 backdrop-blur-md border-b border-[#27272a]/70 rounded-none shadow-none'
         }`}
       >
         {/* Zone 1: Wordmark / Logo */}
