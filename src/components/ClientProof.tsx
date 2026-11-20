@@ -1,158 +1,189 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Award, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Award, Pause, Play } from 'lucide-react';
 import { TESTIMONIALS } from '../data/studioData';
 
 export const ClientProof: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-
-      // Estimate active index based on item width
-      const itemWidth = scrollRef.current.firstElementChild?.clientWidth || 360;
-      const index = Math.round(scrollLeft / (itemWidth + 16));
-      setActiveIndex(Math.min(index, TESTIMONIALS.length - 1));
-    }
-  };
+  const positionsRef = useRef<number[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [motionReduced, setMotionReduced] = useState(false);
 
   useEffect(() => {
-    checkScroll();
-    const currentRef = scrollRef.current;
-    if (currentRef) {
-      currentRef.addEventListener('scroll', checkScroll, { passive: true });
-    }
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('scroll', checkScroll);
-      }
-    };
+    const track = scrollRef.current;
+    if (!track) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 },
+    );
+    observer.observe(track);
+    return () => observer.disconnect();
   }, []);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 380;
-      const scrollAmount = direction === 'left' ? -(cardWidth + 16) : cardWidth + 16;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () => setMotionReduced(preference.matches);
+    updateMotionPreference();
+    preference.addEventListener('change', updateMotionPreference);
+    return () => preference.removeEventListener('change', updateMotionPreference);
+  }, []);
 
-  const scrollToIndex = (index: number) => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 380;
-      scrollRef.current.scrollTo({ left: index * (cardWidth + 16), behavior: 'smooth' });
+  useEffect(() => {
+    const track = scrollRef.current;
+    if (!track) return;
+
+    const cards = Array.from(track.children) as HTMLElement[];
+    track.dataset.motionReduced = String(motionReduced);
+    track.classList.toggle('is-moving', !motionReduced && !isPaused && !isHovered && !isFocused && isVisible);
+    const gap = parseFloat(window.getComputedStyle(track).columnGap) || 20;
+    const cardWidth = cards[0]?.getBoundingClientRect().width ?? 0;
+    let slotWidth = cardWidth + gap;
+    let cycleWidth = slotWidth * cards.length;
+
+    if (motionReduced) {
+      cards.forEach((card) => { card.style.transform = ''; });
+      positionsRef.current = [];
+      return;
     }
-  };
+
+    if (positionsRef.current.length !== cards.length) {
+      positionsRef.current = cards.map((_, index) => index * slotWidth);
+    }
+
+    if (isPaused || isHovered || isFocused || !isVisible) return;
+
+    let previousTime = 0;
+    let frameId = 0;
+
+    const animate = (time: number) => {
+      const elapsed = previousTime ? Math.min((time - previousTime) / 1000, 0.05) : 0;
+      previousTime = time;
+      const positions = positionsRef.current;
+
+      slotWidth = (cards[0]?.getBoundingClientRect().width ?? 0) + gap;
+      cycleWidth = slotWidth * cards.length;
+      if (!document.hidden) {
+        cards.forEach((card, index) => {
+          let position = positions[index] + elapsed * 22;
+          if (position >= track.clientWidth + cardWidth) position -= cycleWidth;
+          positions[index] = position;
+          card.style.transform = `translate3d(${position - index * slotWidth}px, 0, 0)`;
+        });
+      }
+
+      frameId = window.requestAnimationFrame(animate);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        window.cancelAnimationFrame(frameId);
+      } else {
+        previousTime = 0;
+        frameId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(animate);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [isFocused, isHovered, isPaused, isVisible, motionReduced]);
 
   return (
-    <section id="testimonials" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative overflow-hidden">
+    <section id="testimonials" aria-labelledby="testimonials-title" className="py-16 sm:py-20 lg:py-28 border-t border-[#27272a]/50 relative overflow-hidden">
       {/* Balanced container: perfectly aligned from left to right */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
         {/* Section Header with Carousel Navigation Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-4 sm:pb-6">
           <div className="max-w-2xl space-y-1">
-            <span className="text-[11px] sm:text-xs font-caption uppercase tracking-widest text-[#9169f6]">
-              Client Endorsements · Quantitative Proof
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-              The proof is in the posture.
+            <h2 id="testimonials-title" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+              Client reviews
             </h2>
             <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
               Direct feedback from founders and creative leaders whose brands were transformed by Wong’s Digital Arts.
             </p>
           </div>
 
-          {/* Carousel Arrows */}
-          <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
-            <button
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              aria-label="Previous review"
-              className="p-2 sm:p-2.5 rounded-full border border-[#2e2e38] bg-[#161619] hover:bg-[#202026] hover:border-[#9169f6]/40 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer text-white"
-            >
-              <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              aria-label="Next review"
-              className="p-2 sm:p-2.5 rounded-full border border-[#2e2e38] bg-[#161619] hover:bg-[#202026] hover:border-[#9169f6]/40 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer text-white"
-            >
-              <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-            </button>
+          <div className="flex shrink-0 items-center gap-2 pt-1 sm:pt-0">
+            {motionReduced ? (
+              <span className="text-xs text-neutral-500">Motion reduced</span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIsPaused((paused) => !paused)}
+                aria-label={isPaused ? 'Play client reviews' : 'Pause client reviews'}
+                className="inline-flex items-center gap-2 rounded-full border border-[#2e2e38] bg-[#161619] px-3 py-2 text-xs text-neutral-200 transition-colors hover:border-[#9169f6]/50 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9169f6]"
+              >
+                {isPaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+                {isPaused ? 'Play' : 'Pause'}
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Carousel Container: Smooth horizontal scroll, swipeable left-to-right */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 sm:gap-5 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-none"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {TESTIMONIALS.map((t, idx) => (
-            <div
-              key={idx}
-              className="w-[85vw] sm:w-[360px] lg:w-[420px] shrink-0 snap-start p-4 sm:p-5 rounded-2xl bg-[#17171a] border border-[#27272d] hover:border-[#9169f6]/50 transition-all duration-300 flex flex-col justify-between space-y-4 hover:shadow-[0_8px_30px_rgba(76,47,135,0.2)]"
-            >
-              <div className="space-y-3">
-                {/* Metric tag and index */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-xs font-caption text-[#9169f6]">
-                    <Award className="w-3.5 h-3.5 shrink-0" />
-                    <span>{t.impactMetric}</span>
+        <div className="client-reviews-viewport">
+          <div
+            ref={scrollRef}
+            data-motion-reduced="false"
+            role="group"
+            aria-label="Client reviews"
+            tabIndex={0}
+            className="client-reviews-track flex gap-4 sm:gap-5 pt-1 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[#9169f6]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setIsFocused(false);
+              }
+            }}
+          >
+            {TESTIMONIALS.map((t, idx) => (
+              <article
+                key={idx}
+                className="client-review-card p-4 sm:p-5 rounded-2xl bg-[#17171a] border border-[#27272d] flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-xs font-caption text-[#9169f6]">
+                      <Award className="w-3.5 h-3.5 shrink-0" />
+                      <span>{t.impactMetric}</span>
+                    </div>
+                    <span className="text-neutral-500 font-mono-studio text-xs">0{idx + 1}</span>
                   </div>
-                  <span className="text-neutral-500 font-mono-studio text-xs">0{idx + 1}</span>
+
+                  <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed italic">
+                    "{t.quote}"
+                  </p>
                 </div>
 
-                {/* Quote */}
-                <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed italic">
-                  "{t.quote}"
-                </p>
-              </div>
-
-              {/* Client Photo / Avatar & Attribution */}
-              <div className="pt-3 border-t border-[#232328] flex items-center gap-3 font-caption">
-                {t.avatar && (
-                  <img
-                    src={t.avatar}
-                    alt={t.author}
-                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-[#9169f6]/40 shrink-0 shadow-[0_0_10px_rgba(145,105,246,0.3)]"
-                  />
-                )}
-                <div className="space-y-0.5 min-w-0">
-                  <div className="font-display text-xs sm:text-sm font-bold text-white truncate">
-                    {t.author}
-                  </div>
-                  <div className="text-[11px] text-neutral-400 truncate">
-                    <span>{t.role}</span>
-                    <span aria-hidden="true"> · </span>
-                    <span className="text-[#9169f6]">{t.company}</span>
+                <div className="pt-3 border-t border-[#232328] flex items-center gap-3 font-caption">
+                  {t.avatar && (
+                    <img
+                      src={t.avatar}
+                      alt={t.author}
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-[#9169f6]/40 shrink-0 shadow-[0_0_10px_rgba(145,105,246,0.3)]"
+                    />
+                  )}
+                  <div className="space-y-0.5 min-w-0">
+                    <div className="font-display text-xs sm:text-sm font-bold text-white truncate">
+                      {t.author}
+                    </div>
+                    <div className="text-[11px] text-neutral-400 truncate">
+                      <span>{t.role}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span className="text-[#9169f6]">{t.company}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Carousel Dot Indicators */}
-        <div className="pt-3 flex items-center justify-center gap-1.5">
-          {TESTIMONIALS.map((_, dotIdx) => (
-            <button
-              key={dotIdx}
-              onClick={() => scrollToIndex(dotIdx)}
-              aria-label={`Go to review ${dotIdx + 1}`}
-              className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                activeIndex === dotIdx
-                  ? 'w-6 bg-[#9169f6]'
-                  : 'w-1.5 bg-[#2d2d35] hover:bg-neutral-500'
-              }`}
-            />
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

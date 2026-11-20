@@ -20,19 +20,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
   }, []);
 
   const navLinks = [
-    { label: 'View Work', href: '#works' },
-    { label: 'Services', href: '#capabilities' },
-    { label: 'About', href: '#ethos' },
-    { label: 'Reviews', href: '#testimonials' },
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services/' },
+    { label: 'Projects', href: '/projects/' },
+    { label: 'About', href: '/about/' },
   ];
-
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
 
   return (
     <div
@@ -51,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
         }`}
       >
         {/* Zone 1: Wordmark / Logo */}
-        <a href="#" className="flex items-center gap-1.5 group shrink-0">
+        <a href="/" className="flex items-center gap-1.5 group shrink-0" aria-label="Wong's Digital Arts home">
           <img 
             src={logoImg} 
             alt="WONG'S Digital Arts" 
@@ -69,13 +62,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
         {/* Zone 2: Navigation Links (text-[11px] sm:text-xs) */}
         <nav className="hidden md:flex items-center gap-4 sm:gap-5 lg:gap-6 text-[11px] sm:text-xs font-medium font-jakarta text-neutral-300">
           {navLinks.map((link) => (
-            <button
+            <a
               key={link.label}
-              onClick={() => handleNavClick(link.href)}
-              className="text-neutral-300 hover:text-white transition-colors cursor-pointer py-0.5 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#9169f6] hover:after:w-full after:transition-all whitespace-nowrap"
+              href={link.href}
+              aria-current={currentPath === link.href.replace(/\/+$/, '') || (link.href === '/' && currentPath === '/') ? 'page' : undefined}
+              className={`${currentPath === link.href.replace(/\/+$/, '') ? 'text-white' : 'text-neutral-300'} hover:text-white transition-colors py-0.5 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#9169f6] hover:after:w-full after:transition-all whitespace-nowrap`}
             >
               {link.label}
-            </button>
+            </a>
           ))}
         </nav>
 
@@ -107,13 +101,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInquiry }) => {
         <div className="pointer-events-auto mt-2 w-[calc(100%-1.5rem)] max-w-sm mx-auto border border-[#2b2b35] bg-[#161619]/98 backdrop-blur-2xl rounded-2xl px-5 py-4 space-y-3 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
           <nav className="flex flex-col gap-1.5 font-jakarta text-xs">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.label}
-                onClick={() => handleNavClick(link.href)}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                aria-current={currentPath === link.href.replace(/\/+$/, '') || (link.href === '/' && currentPath === '/') ? 'page' : undefined}
                 className="text-left py-1.5 text-xs font-medium text-neutral-200 hover:text-[#9169f6] transition-colors border-b border-[#24242a] last:border-none"
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </nav>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { SelectedWorks } from './components/SelectedWorks';
@@ -12,10 +12,34 @@ import { InquiryModal } from './components/InquiryModal';
 import { CaseStudy } from './types';
 
 export default function App() {
+  type Page = 'home' | 'services' | 'projects' | 'about';
+  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  const pageByPath: Record<string, Page> = {
+    '/': 'home',
+    '/services': 'services',
+    '/projects': 'projects',
+    '/about': 'about',
+  };
+  const page = pageByPath[currentPath] ?? 'home';
   const [selectedProject, setSelectedProject] = useState<CaseStudy | null>(null);
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryNotes, setInquiryNotes] = useState('');
   const [inquiryServices, setInquiryServices] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (currentPath === '/client-reviews') {
+      window.location.replace('/#testimonials');
+      return;
+    }
+
+    const pageTitles = {
+      home: "Wong's Digital Arts — Independent Design Studio",
+      services: "Services — Wong's Digital Arts",
+      projects: "Projects — Wong's Digital Arts",
+      about: "About — Wong's Digital Arts",
+    };
+    document.title = pageTitles[page];
+  }, [currentPath, page]);
 
   const handleOpenInquiry = () => {
     setInquiryNotes('');
@@ -49,43 +73,45 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#121214] text-neutral-100 flex flex-col font-sans selection:bg-purple-600 selection:text-white">
+    <div className="min-h-screen bg-[#121214] text-neutral-100 flex flex-col font-sans selection:bg-[#4c2f87] selection:text-white">
       {/* Top Bar */}
       <Header onOpenInquiry={handleOpenInquiry} />
 
       {/* Main Studio Surfaces */}
       <main className="flex-1">
-        {/* Hero Section */}
-        <Hero
-          onOpenInquiry={handleOpenInquiry}
-          onExploreWorks={handleExploreWorks}
-        />
-
-        {/* Selected Works Bento Monograph */}
-        <SelectedWorks onSelectProject={(project) => setSelectedProject(project)} />
-
-        {/* Capabilities & Disciplines */}
-        <Capabilities onSelectService={handleSelectService} />
-
-        {/* Solo Studio Ethos & Operational Contrast */}
-        <SoloStudioEthos onOpenInquiry={handleOpenInquiry} />
-
-        {/* Quantitative Client Proof & Testimonials */}
-        <ClientProof />
-
-        {/* Interactive Studio Brand Fit Check */}
-        <BrandFitCheck onPrepopulateInquiry={handlePrepopulateFromDiagnostic} />
+        {page === 'home' && (
+          <>
+            <Hero
+              onOpenInquiry={handleOpenInquiry}
+              onExploreWorks={handleExploreWorks}
+            />
+            <SelectedWorks onSelectProject={(project) => setSelectedProject(project)} />
+            <BrandFitCheck onPrepopulateInquiry={handlePrepopulateFromDiagnostic} />
+            <ClientProof />
+          </>
+        )}
+        {page === 'services' && (
+          <Capabilities onSelectService={handleSelectService} isPage />
+        )}
+        {page === 'projects' && (
+          <SelectedWorks onSelectProject={(project) => setSelectedProject(project)} isPage />
+        )}
+        {page === 'about' && (
+          <SoloStudioEthos onOpenInquiry={handleOpenInquiry} isPage />
+        )}
       </main>
 
       {/* Studio Footer */}
       <Footer onOpenInquiry={handleOpenInquiry} />
 
       {/* Case Study Deep Dive Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-        onInquireAboutProject={handleInquireAboutProject}
-      />
+      {(page === 'home' || page === 'projects') && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+          onInquireAboutProject={handleInquireAboutProject}
+        />
+      )}
 
       {/* Interactive Project Inquiry & Booking Modal */}
       <InquiryModal
