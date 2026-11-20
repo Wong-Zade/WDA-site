@@ -8,7 +8,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => {
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center items-center overflow-hidden pt-20 pb-4 sm:pt-20 sm:pb-6">
+    <section className="relative min-h-[100svh] flex flex-col justify-center items-center overflow-hidden pt-16 pb-4 sm:pt-16 sm:pb-6">
       {/* Subtle background ambient purple glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[320px] bg-[#4c2f87]/20 blur-[130px] pointer-events-none rounded-full"
@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry, onExploreWorks }) => 
       />
 
       {/* Centered optical column, balanced from left to right */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center relative z-10">
         {/* Top Studio Kicker & Status with Sora caption font */}
         <div className="flex items-center pb-3 sm:pb-4 border-b border-[#27272a]/60 text-xs font-sora text-neutral-400">
           <div className="flex items-center gap-2">
